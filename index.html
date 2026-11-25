@@ -4,329 +4,374 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мой сайт</title>
-
+<meta name="theme-color" content="#210d38">
+<title>Friendship Test 💜</title>
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+:root{--pink:#ff65b7;--purple:#a879ff;--panel:#28183f}
+body{
+ margin:0;padding:16px;color:white;text-align:center;
+ font-family:Arial,sans-serif;min-height:100vh;
+ background:linear-gradient(-45deg,#160021,#48116a,#151044,#76245f);
+ background-size:400% 400%;animation:bg 13s ease infinite;
 }
-
-body {flex-direction: column;
-width: 100%;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #7b2ff7, #f107a3, #ff8c42);
-    color: white;
-    text-align: center;
-}
-
-.container {
-    padding: 35px 25px;
-    margin: 20px;
-    max-width: 550px;
-    width: 90%;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    backdrop-filter: blur(12px);
-}
-
-h1 {
-    font-size: 32px;
-}
-
-p {
-    font-size: 20px;
-    line-height: 1.6;
-}
+@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+body.no-animations,body.no-animations *{animation:none!important;transition:none!important}
+button{font-size:16px;font-weight:bold;border:0;border-radius:15px;
+ padding:14px 19px;margin:6px;background:var(--purple);color:white;
+ cursor:pointer;box-shadow:0 5px 15px #0004;transition:.2s}
+button:hover{transform:translateY(-3px);filter:brightness(1.15)}
+button:active{transform:scale(.94)}
+.card{max-width:650px;margin:20px auto;padding:22px;
+ background:#28183feF;border:1px solid #b99bff;border-radius:24px;
+ box-shadow:0 10px 40px #0006;animation:appear .5s}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+header{padding:15px 0}
+header h1{font-size:32px;text-shadow:0 0 20px var(--pink)}
+.update{position:fixed;right:10px;top:10px;background:#ff477e;
+ padding:9px 12px;border-radius:20px;font-size:11px;font-weight:bold;z-index:5}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.tile{background:#39245a;border:2px solid #9c76d5;border-radius:20px;
+ padding:12px;cursor:pointer;transition:.3s;overflow:hidden}
+.tile:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 0 24px #d46bff88}
+.tile img{width:100%;height:145px;object-fit:cover;border-radius:14px}
+.tile h3{margin:10px 0 5px;font-size:17px}
+.tile p{font-size:12px;opacity:.8}
+.question{font-size:22px;font-weight:bold;margin:24px 0}
+.answer{display:block;width:100%;background:#513b75}
+.good{background:#159c65}.bad{background:#b52f55}
+.hidden{display:none!important}
+.big{font-size:23px;background:#ff4e9b;width:100%}
+.progress{background:#ffffff30;height:12px;border-radius:20px;overflow:hidden}
+.progress div{height:100%;background:linear-gradient(90deg,#ff65b7,#ffd0f0);
+ width:0;transition:.4s}
+.small{font-size:13px;opacity:.75}
+.secret{background:#573e24;border-color:#ffce55}
+.setting-row{background:#392650;border-radius:15px;padding:14px;
+ margin:10px 0;display:flex;align-items:center;justify-content:space-between;
+ gap:10px;text-align:left}
+.setting-row button{margin:0}
+.like{background:#e64d9b}
+.support{background:#9c65e9}
+.counter{font-size:27px;font-weight:bold;color:#ff9bd1}
+.modal{position:fixed;inset:0;background:#10001bee;z-index:10;
+ display:flex;align-items:center;justify-content:center;padding:20px}
+.modalbox{max-width:420px;width:100%;background:#392052;
+ border:2px solid #ff8bd0;border-radius:25px;padding:25px}
+#no{position:relative}
+.nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.nav button{font-size:13px;padding:11px}
+footer{opacity:.6;font-size:12px;padding:25px}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+ background:#302047;border:1px solid #b99bff;border-radius:20px;
+ padding:13px 20px;z-index:20;display:none;box-shadow:0 0 20px #0008}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:15;font-size:25px}
+@media(max-width:390px){.tile img{height:115px}header h1{font-size:26px}}
 </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Привет! 👋</h1>
-        <p>Вся информация нужная тебе будет снизу 👇</p>
-    </div>
-<section id="vietnam-guide">
-<style>
-#vietnam-guide {
-  background:linear-gradient(145deg,#101426,#182b46);
-  color:#fff;
-  padding:22px 14px;
-  border-radius:22px;
-  max-width:850px;
-  margin:25px auto;
-  font-family:Arial,sans-serif;
-  overflow:hidden;
-}
-#vietnam-guide * {box-sizing:border-box}
-#vietnam-guide .hero {
-  text-align:center;
-  padding:25px 8px;
-}
-#vietnam-guide .sticker {
-  display:inline-block;
-  font-size:45px;
-  padding:12px;
-  background:#ffffff12;
-  border:1px solid #ffffff25;
-  border-radius:20px;
-  margin:5px;
-}
-#vietnam-guide h2 {
-  font-size:27px;
-  line-height:1.3;
-  color:#65f5c2;
-}
-#vietnam-guide h3 {
-  color:#65f5c2;
-  margin-top:8px;
-}
-#vietnam-guide p {
-  color:#d4dfef;
-  line-height:1.65;
-}
-#vietnam-guide .card {
-  background:#202e48;
-  border:1px solid #ffffff20;
-  padding:19px;
-  border-radius:17px;
-  margin:15px 0;
-  box-shadow:0 6px 20px #0003;
-}
-#vietnam-guide .tag {
-  display:inline-block;
-  background:#315c65;
-  color:#8dffdb;
-  padding:6px 11px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-}
-#vietnam-guide ol,
-#vietnam-guide ul {
-  color:#e0e8f4;
-  line-height:1.9;
-  padding-left:22px;
-}
-#vietnam-guide .warning {
-  background:#493729;
-  border:1px solid #ffbf69;
-  padding:14px;
-  border-radius:13px;
-  margin-top:12px;
-}
-#vietnam-guide .info {
-  background:#193e3c;
-  border:1px solid #40d9ad;
-  padding:14px;
-  border-radius:13px;
-  margin-top:12px;
-}
-#vietnam-guide details {
-  margin:10px 0;
-  background:#202e48;
-  border:1px solid #ffffff20;
-  border-radius:13px;
-  padding:15px;
-}
-#vietnam-guide summary {
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-#vietnam-guide details p {
-  margin-bottom:0;
-}
-#vietnam-guide .footer {
-  text-align:center;
-  padding:25px 5px 5px;
-  color:#9eafc5;
-  font-size:13px;
-}
-</style>
 
-<div class="hero">
-  <div class="sticker">🇻🇳</div>
-  <div class="sticker">🎮</div>
-  <div class="sticker">✨</div>
-  <h2>КАК ПОМЕНЯТЬ РЕГИОН ROBLOX С РОССИИ НА ВЬЕТНАМ?</h2>
-  <p>🔥 Большой гайд со всеми основными вариантами, подробными инструкциями и полезными советами!</p>
-  <span class="tag">ROBLOX REGION GUIDE</span>
+<div class="update" id="update"></div>
+<div id="toast"></div>
+<div id="confetti"></div>
+
+<div id="welcome" class="modal">
+ <div class="modalbox">
+  <h1>💀 ВЫ ГОТОВЫ К ПОЗОРУ?</h1>
+  <p>Проверим, насколько хорошо ты знаешь своих друзей?</p>
+  <button onclick="start()">ДА 😈</button>
+  <button id="no">НЕТ</button>
+ </div>
 </div>
 
-<div class="card">
-  <h3>📌 СНАЧАЛА ВАЖНО ПРОЧИТАТЬ</h3>
-  <p>Roblox самостоятельно определяет регион аккаунта. Просто выбрать Вьетнам в настройках нельзя.</p>
-  <div class="info">
-    💚 В этом гайде собраны официальные варианты и объяснения, что именно меняет каждый из них.
+<header>
+ <h1>💜 FRIENDSHIP TEST 💜</h1>
+ <p>Проверь, насколько хорошо ты знаешь своих друзей!</p>
+</header>
+
+<div class="nav">
+ <button onclick="goHome()">🏠 Главная</button>
+ <button onclick="showSettings()">⚙️ Настройки</button>
+</div>
+
+<main id="home">
+ <div class="card">
+  <h2>ВЫБИРАЙ СВОЙ УРОВЕНЬ</h2>
+  <div class="grid">
+   <div class="tile" onclick="openQuiz('artem')">
+    <img src="IMG_0983.jpeg" alt="Артём">
+    <h3>1. АРТЁМ</h3>
+    <p>Начать тест 🔥</p>
+   </div>
+   <div class="tile" onclick="locked('Егор')">
+    <div style="font-size:100px;height:145px">❓</div>
+    <h3>2. ЕГОР</h3><p>Скоро...</p>
+   </div>
+   <div class="tile" onclick="openQuiz('ilya')">
+    <img src="ilya.jpg" alt="Илья">
+    <h3>3. ИЛЬЯ</h3><p>Начать тест 🔥</p>
+   </div>
+   <div class="tile" onclick="locked('Арих')">
+    <div style="font-size:100px;height:145px">❓</div>
+    <h3>4. АРИХ</h3><p>Скоро...</p>
+   </div>
+   <div class="tile secret" onclick="openSecret()">
+    <div style="font-size:95px;height:125px">🔒</div>
+    <h3>5. СЕКРЕТНЫЙ УРОВЕНЬ</h3>
+    <p>Муся 👑</p>
+   </div>
   </div>
-</div>
+ </div>
+</main>
 
-<div class="card">
-  <span class="tag">СПОСОБ №1</span>
-  <h3>✈️ РЕАЛЬНЫЙ ПЕРЕЕЗД</h3>
-  <div class="sticker">🧳</div>
-  <p>Если ты действительно переехал во Вьетнам:</p>
-  <ol>
-    <li>Подключись к обычному интернету по месту проживания.</li>
-    <li>Отключи VPN, если он включён.</li>
-    <li>Используй Roblox из новой страны.</li>
-    <li>Подожди обновления информации о местоположении.</li>
-    <li>Проверь регион в настройках аккаунта.</li>
-  </ol>
-  <p>⏳ Обновление может занять время.</p>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №2</span>
-  <h3>⚙️ ПРОВЕРКА РЕГИОНА</h3>
-  <div class="sticker">🔍</div>
-  <ol>
-    <li>Открой Roblox.</li>
-    <li>Зайди в свой аккаунт.</li>
-    <li>Нажми Settings.</li>
-    <li>Выбери Account Info.</li>
-    <li>Найди Account Location.</li>
-    <li>Посмотри указанную страну.</li>
-  </ol>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №3</span>
-  <h3>🎫 ПОДДЕРЖКА ROBLOX</h3>
-  <div class="sticker">💬</div>
-  <ol>
-    <li>Открой форму поддержки Roblox.</li>
-    <li>Укажи почту аккаунта.</li>
-    <li>Выбери тему проблемы с аккаунтом.</li>
-    <li>Объясни, что регион отображается неправильно.</li>
-    <li>Укажи своё фактическое местоположение.</li>
-    <li>Дождись ответа.</li>
-  </ol>
-  <p>⚠️ Поддержка не гарантирует ручную смену страны.</p>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №4</span>
-  <h3>🍎 РЕГИОН APP STORE</h3>
-  <div class="sticker">📱</div>
-  <ol>
-    <li>Открой настройки iPhone.</li>
-    <li>Нажми на свой Apple Account.</li>
-    <li>Открой Media & Purchases.</li>
-    <li>Нажми View Account.</li>
-    <li>Выбери Country/Region.</li>
-    <li>Измени страну при реальном переезде.</li>
-  </ol>
-  <p>Это меняет регион магазина Apple, а не непосредственно Roblox.</p>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №5</span>
-  <h3>🤖 РЕГИОН GOOGLE PLAY</h3>
-  <div class="sticker">🌍</div>
-  <ol>
-    <li>Открой Google Play.</li>
-    <li>Нажми на аватар.</li>
-    <li>Перейди в Settings.</li>
-    <li>Открой General.</li>
-    <li>Найди Country and profiles.</li>
-    <li>Следуй условиям Google для смены страны.</li>
-  </ol>
-  <p>Это не меняет автоматически регион Roblox.</p>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №6</span>
-  <h3>🗣️ ВЬЕТНАМСКИЙ ЯЗЫК</h3>
-  <div class="sticker">🇻🇳</div>
-  <ol>
-    <li>Открой настройки Roblox.</li>
-    <li>Перейди в Account Info.</li>
-    <li>Найди Language.</li>
-    <li>Выбери Vietnamese.</li>
-  </ol>
-  <p>💡 Язык интерфейса изменится, но регион аккаунта останется прежним.</p>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №7</span>
-  <h3>🎮 ROBLOX VNG</h3>
-  <div class="sticker">🕹️</div>
-  <p>Во Вьетнаме существует отдельная версия Roblox VNG.</p>
-  <ul>
-    <li>Можно войти в существующий аккаунт.</li>
-    <li>Игровые данные и Robux переносятся.</li>
-    <li>Можно играть с пользователями из других стран.</li>
-  </ul>
-  <div class="warning">
-    🚨 ВАЖНО! После первого входа в Roblox VNG на аккаунте нельзя пользоваться глобальным приложением Roblox. Хорошо подумай перед переходом!
-  </div>
-</div>
-
-<div class="card">
-  <span class="tag">СПОСОБ №8</span>
-  <h3>🔐 VPN И ПРОКСИ</h3>
-  <div class="sticker">🛡️</div>
-  <p>VPN меняет видимый IP-адрес, но не является официальным способом смены региона Roblox.</p>
-  <div class="warning">
-    ⚠️ Не стоит использовать VPN для обхода ограничений платформы или искусственной подмены страны.
-  </div>
-</div>
-
-<h3 style="text-align:center;margin-top:30px">
-  ❓ ЧАСТЫЕ ВОПРОСЫ
-</h3>
-
-<details>
-  <summary>⏳ Можно ли поменять регион за 5 минут?</summary>
-  <p>Нет. Roblox самостоятельно определяет местоположение. Точного срока обновления нет.</p>
-</details>
-
-<details>
-  <summary>💰 Пропадут ли мои Robux?</summary>
-  <p>При обычной смене местоположения аккаунта Robux не должны пропасть. Для Roblox VNG действуют отдельные условия переноса.</p>
-</details>
-
-<details>
-  <summary>👥 Можно ли играть с друзьями из России?</summary>
-  <p>Да, пользователи Roblox VNG могут играть с людьми из других стран.</p>
-</details>
-
-<details>
-  <summary>🌐 Меняет ли язык регион?</summary>
-  <p>Нет. Язык и местоположение — разные параметры.</p>
-</details>
-
-<details>
-  <summary>🔄 Можно ли вернуться с VNG на глобальный Roblox?</summary>
-  <p>После первого входа в Roblox VNG глобальное приложение на этом аккаунте становится недоступным.</p>
-</details>
-
-<div class="card">
-  <h3>⭐ НЕ ЗАБЫВАЙ!</h3>
-  <p>Перед любыми изменениями:</p>
-  <ul>
-    <li>🔒 Защити аккаунт.</li>
-    <li>📧 Проверь привязанную почту.</li>
-    <li>🔑 Никому не сообщай пароль.</li>
-    <li>🚫 Не используй неизвестные программы.</li>
-    <li>💚 Внимательно читай условия перехода.</li>
-  </ul>
-</div>
-
-<div class="footer">
-  🇻🇳 ROBLOX REGION GUIDE 🇻🇳<br>
-  Сделано для игрового сообщества ❤️<br>
-  Неофициальный информационный гайд
-</div>
+<section id="quiz" class="card hidden">
+ <button onclick="goHome()">← Назад</button>
+ <h2 id="quizTitle"></h2>
+ <div class="progress"><div id="bar"></div></div>
+ <p id="counter"></p>
+ <div class="question" id="question"></div>
+ <div id="answers"></div>
+ <p id="feedback"></p>
 </section>
 
+<section id="settingsPage" class="card hidden">
+ <h2>⚙️ НАСТРОЙКИ</h2>
+ <p>Настройки и поддержка проекта</p>
+ <div class="setting-row">
+  <span>🔊 Звуковые эффекты</span>
+  <button id="soundBtn" onclick="toggleSound()">ВКЛ</button>
+ </div>
+ <div class="setting-row">
+  <span>✨ Анимации</span>
+  <button id="animBtn" onclick="toggleAnimations()">ВКЛ</button>
+ </div>
+ <hr style="border-color:#ffffff30">
+ <h2>❤️ ПОДДЕРЖКА АВТОРА</h2>
+ <p>Если тебе нравится сайт, поддержи его лайком!</p>
+ <div class="counter" id="likeCount">—</div>
+ <p class="small">Лайков у сайта</p>
+ <button class="like" id="likeBtn" onclick="giveLike()">❤️ ЛАЙКНУТЬ САЙТ</button>
+ <div class="counter" id="supportCount">—</div>
+ <p class="small">Поддержка автора</p>
+ <button class="support" onclick="supportAuthor()">💜 ПОДДЕРЖАТЬ АВТОРА</button>
+ <p class="small" id="likeStatus">Подключение счётчика...</p>
+ <hr style="border-color:#ffffff30">
+ <h2>🏆 ТВОЙ ПРОГРЕСС</h2>
+ <p>Пройдено тестов: <b id="doneCount">0</b> из 2</p>
+ <p>До секретного уровня осталось: <b id="leftCount">2</b></p>
+ <div class="progress"><div id="settingsBar"></div></div>
+ <p class="small">Версия сайта: 2.0</p>
+ <button class="bad" onclick="resetProgress()">СБРОСИТЬ ПРОГРЕСС</button>
+ <button onclick="goHome()">← НА ГЛАВНУЮ</button>
+</section>
+
+<section id="secretPage" class="card hidden">
+ <h1>👑 МУСЯ 👑</h1>
+ <h2>ТЫ ОТКРЫЛ СЕКРЕТНЫЙ УРОВЕНЬ!</h2>
+ <p>Поздравляю! Ты прошёл оба испытания!</p>
+ <div style="font-size:70px">🎉💜🎊</div>
+ <button onclick="goHome()">НА ГЛАВНУЮ</button>
+</section>
+
+<footer>Friendship Test • Сделано с ❤️</footer>
+
+<script>
+// НАСТРОЙКА ОБЩИХ ЛАЙКОВ SUPABASE
+// Вставь сюда URL проекта и публичный anon key из Supabase.
+const SUPABASE_URL = "ВСТАВЬ_URL_ПРОЕКТА";
+const SUPABASE_KEY = "ВСТАВЬ_ANON_KEY";
+
+let db=null;
+let countersReady=false;
+
+async function initLikes(){
+ const status=document.getElementById("likeStatus");
+ if(!SUPABASE_URL.startsWith("https://") || SUPABASE_KEY.startsWith("ВСТАВЬ")){
+  status.textContent="Общий счётчик пока не подключён. Нужна настройка базы.";
+  document.getElementById("likeCount").textContent="—";
+  document.getElementById("supportCount").textContent="—";
+  return;
+ }
+ try{
+  const {createClient}=await import("https://esm.sh/@supabase/supabase-js@2");
+  db=createClient(SUPABASE_URL,SUPABASE_KEY);
+  await refreshCounters();
+  countersReady=true;
+  status.textContent="Общий счётчик подключён 💜";
+ }catch(e){
+  status.textContent="Не удалось подключить счётчик. Проверь настройки базы.";
+ }
+}
+
+async function refreshCounters(){
+ if(!db)return;
+ const {data,error}=await db.from("site_counters").select("*");
+ if(error)throw error;
+ const likes=data.find(x=>x.name==="likes");
+ const support=data.find(x=>x.name==="support");
+ document.getElementById("likeCount").textContent=likes?.count??0;
+ document.getElementById("supportCount").textContent=support?.count??0;
+}
+async function incrementCounter(name){
+ if(!db){toast("Сначала нужно подключить общий счётчик 💜");return}
+ try{
+  const {error}=await db.rpc("increment_counter",{counter_name:name});
+  if(error)throw error;
+  await refreshCounters();
+  toast(name==="likes"?"Спасибо за лайк! ❤️":"Спасибо за поддержку! 💜");
+ }catch(e){toast("Ошибка счётчика. Попробуй позже.");}
+}
+function giveLike(){incrementCounter("likes")}
+function supportAuthor(){incrementCounter("support")}
+
+document.getElementById("update").textContent=
+ "ОБНОВА ВЫШЛА • "+new Date().toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit"});
+
+const tests={
+ artem:[
+  {q:"Какое моё хобби?",a:["Музыка 🎵","Игры 🎮"],c:0},
+  {q:"Какой мой любимый момент в школе?",a:["Столовая 🍕","Как С.М. орёт 💀"],c:1},
+  {q:"Чем я занимаюсь?",a:["Футбол ⚽","Регби 🏉"],c:1},
+  {q:"Что я не люблю?",a:["Когда меня перебивают","Когда люди не понимают, что натворили"],c:1},
+  {q:"Что я обожаю больше всего?",a:["СВОИХ ДРУЗЕЙ ❤️"],c:0,big:true}
+ ],
+ ilya:[
+  {q:"Что я больше люблю?",a:["Волейбол 🏐","Футбол ⚽"],c:0},
+  {q:"Кто мой лучший друг?",a:["Муся","Максим"],c:1},
+  {q:"Что Илья любит в школе?",a:["Бить Мусю","Дегенерировать 💀"],c:0},
+  {q:"Какая любимая еда?",a:["Школьная пицца 🍕","Суп 🍲"],c:0},
+  {q:"Илья какой?",a:["Обычный","Кал жувал 💀"],c:1}
+ ]
+};
+
+let current="",index=0,score=0;
+let completed=JSON.parse(localStorage.getItem("completedTests")||"[]");
+let soundOn=localStorage.getItem("soundOn")!=="false";
+let animationsOn=localStorage.getItem("animationsOn")!=="false";
+
+function start(){document.getElementById("welcome").classList.add("hidden")}
+document.getElementById("no").addEventListener("pointerenter",ev=>{
+ const b=ev.currentTarget;
+ b.style.position="fixed";
+ b.style.left=Math.random()*65+"vw";
+ b.style.top=Math.random()*65+"vh";
+});
+document.getElementById("no").onclick=ev=>{
+ ev.currentTarget.style.left=Math.random()*65+"vw";
+ ev.currentTarget.style.top=Math.random()*65+"vh";
+};
+
+function hideAll(){
+ ["home","quiz","settingsPage","secretPage"].forEach(id=>
+ document.getElementById(id).classList.add("hidden"));
+}
+function goHome(){hideAll();document.getElementById("home").classList.remove("hidden")}
+function openQuiz(name){
+ start();current=name;index=0;score=0;
+ hideAll();document.getElementById("quiz").classList.remove("hidden");
+ document.getElementById("quizTitle").textContent=
+ name==="artem"?"ТЕСТ ПРО АРТЁМА":"ТЕСТ ПРО ИЛЬЮ";
+ showQuestion();
+}
+function showQuestion(){
+ let q=tests[current][index];
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("counter").textContent="Вопрос "+(index+1)+" из 5";
+ document.getElementById("bar").style.width=(index/5*100)+"%";
+ document.getElementById("feedback").textContent="";
+ let box=document.getElementById("answers");box.innerHTML="";
+ q.a.forEach((answer,i)=>{
+  let b=document.createElement("button");
+  b.textContent=answer;b.className="answer"+(q.big?" big":"");
+  b.onclick=()=>choose(i);box.appendChild(b);
+ });
+}
+function choose(choice){
+ let q=tests[current][index],box=document.getElementById("answers");
+ [...box.children].forEach((b,i)=>{
+  b.disabled=true;
+  if(i===q.c)b.classList.add("good");
+  else if(i===choice)b.classList.add("bad");
+ });
+ if(choice===q.c){score++;if(soundOn)beep(700)}
+ else if(soundOn)beep(180);
+ document.getElementById("feedback").textContent=
+ choice===q.c?"ПРАВИЛЬНО! 🔥":"НЕПРАВИЛЬНО 💀";
+ let next=document.createElement("button");
+ next.textContent=index===4?"ЗАВЕРШИТЬ":"ДАЛЬШЕ →";
+ next.onclick=()=>{index++;if(index<5)showQuestion();else finish()};
+ box.appendChild(next);
+}
+function finish(){
+ if(!completed.includes(current)){
+  completed.push(current);
+  localStorage.setItem("completedTests",JSON.stringify(completed));
+ }
+ document.getElementById("question").textContent="ТЕСТ ЗАВЕРШЁН! 🎉";
+ document.getElementById("counter").textContent="Твой результат: "+score+" из 5";
+ document.getElementById("bar").style.width="100%";
+ document.getElementById("answers").innerHTML=
+ '<button onclick="goHome()">НА ГЛАВНУЮ</button>';
+ document.getElementById("feedback").textContent="Спасибо за прохождение!";
+ confetti();
+}
+function locked(name){toast(name+" пока под вопросом ❓")}
+function showSettings(){
+ start();hideAll();
+ document.getElementById("settingsPage").classList.remove("hidden");
+ let n=completed.length;
+ document.getElementById("doneCount").textContent=n;
+ document.getElementById("leftCount").textContent=2-n;
+ document.getElementById("settingsBar").style.width=(n/2*100)+"%";
+ document.getElementById("soundBtn").textContent=soundOn?"ВКЛ":"ВЫКЛ";
+ document.getElementById("animBtn").textContent=animationsOn?"ВКЛ":"ВЫКЛ";
+}
+function toggleSound(){
+ soundOn=!soundOn;localStorage.setItem("soundOn",soundOn);
+ document.getElementById("soundBtn").textContent=soundOn?"ВКЛ":"ВЫКЛ";
+ toast("Звук "+(soundOn?"включён":"выключен"));
+}
+function toggleAnimations(){
+ animationsOn=!animationsOn;
+ localStorage.setItem("animationsOn",animationsOn);
+ document.body.classList.toggle("no-animations",!animationsOn);
+ document.getElementById("animBtn").textContent=animationsOn?"ВКЛ":"ВЫКЛ";
+}
+function openSecret(){
+ if(completed.includes("artem")&&completed.includes("ilya")){
+  hideAll();document.getElementById("secretPage").classList.remove("hidden");
+  confetti();
+ }else toast("Секретный уровень закрыт! Пройди тесты Артёма и Ильи 🔒");
+}
+function resetProgress(){
+ if(confirm("Точно сбросить прогресс?")){
+  completed=[];
+  localStorage.setItem("completedTests","[]");
+  showSettings();toast("Прогресс сброшен");
+ }
+}
+function confetti(){
+ let c=document.getElementById("confetti");
+ c.textContent="🎉 ✨ 🎊 💜 ✨ 🎉";
+ setTimeout(()=>c.textContent="",2500);
+}
+function toast(message){
+ let t=document.getElementById("toast");
+ t.textContent=message;t.style.display="block";
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>t.style.display="none",2600);
+}
+function beep(freq){
+ try{
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const osc=ctx.createOscillator(),gain=ctx.createGain();
+  osc.frequency.value=freq;gain.gain.value=.04;
+  osc.connect(gain);gain.connect(ctx.destination);
+  osc.start();osc.stop(ctx.currentTime+.12);
+ }catch(e){}
+}
+document.body.classList.toggle("no-animations",!animationsOn);
+initLikes();
+</script>
 </body>
 </html>
